@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "2.0.20"
     kotlin("plugin.serialization") version "2.0.20"
     id("org.jetbrains.dokka") version "1.9.20"
+    `maven-publish`
 }
 
 group = "com.moshy"
@@ -26,4 +27,12 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(8)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+        }
+    }
 }
